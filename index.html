@@ -19,16 +19,77 @@
 
   gtag('config', 'UA-40545865-2');
 </script>    
+
 </head>
+
+
 <body style="background-color:black;">
 
-
     
-<center><font size="24" color="white">See! I told you<a href="https://www.publicalbum.org/blog/embedding-google-photos-albums" target="null">!</a> :)</font></center>
+<center><font size="24" color="white">See! I told you!</a> :)</font></center>
+	
 <center>
 
-<img src="drunkliar/pic.jpg" alt="fun" title="fun" />
+
+<!-- Build the rest of your page around this div -->
+<div id="imageContainer">
+    <!-- The dynamically added image will appear here -->
+</div>
+
+<script>
+    window.onload = function() {
+        // Create a new image element
+        var img = document.createElement("img");
+        
+        img.src = "drunkliar/pic.jpg?t=" + Date.now();
+        
+        img.alt = "Fun";
+        //img.width = 200; // Replace width/height with whatever you want
+        //img.height = 150; 
+        
+        // Get the container element defined above 
+        var container = document.getElementById("imageContainer");
+        
+        // Append the image to the container
+        container.appendChild(img);
+    };
+</script>
+
+
+
 
 </center>
+
+<!--
+
+<img src="drunkliar/pic.jpg" alt="fun" title="fun" />
+<p id="demo"></p>
+
+<img id="demo" src="drunkliar/pic.jpg" alt="fun" title="fun" />
+
+<script>
+document.getElementById("demo").innerHTML = Math.random() + 'abc';
+</script>
+
+
+
+
+<img class="NO-CACHE" alt="fun" title="fun" src="drunkliar/pic.jpg"/>
+
+<script>
+	var nods = document.getElementsByClassName('NO-CACHE');
+		for (var i = 0; i < nods.length; i++)
+		{
+		    nods[i].attributes['src'].value += "?a=" + Math.random();
+		}
+</script>
+
+
+
+
+<img src="drunkliar/pic.jpg" alt="fun" title="fun" />
+-->
+
+
 </body>
 </html>
