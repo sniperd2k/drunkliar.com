@@ -13,16 +13,29 @@ def main():
     #    file.write(the_html)
 
 def get_latest_file_name():
-    list_of_files = glob.glob('G:/Dropbox/drunkliar/*') # * means all if need specific format then *.csv
+    file_list = glob.glob('G:/Dropbox/drunkliar/*') # * means all if need specific format then *.csv
+   
+    file_list = exclude_files(file_list)
     
     #if pic.jpg is in here, use that
-    for file_name in list_of_files:
+    for file_name in file_list:
         if re.search("\\\pic.jpg$", file_name, re.IGNORECASE):
             list_of_files = [file_name]
-        
-    latest_file_name_full= max(list_of_files, key=os.path.getctime)
+       
+    latest_file_name_full= max(file_list, key=os.path.getctime)
     latest_file_name = re.search("\\\([^\\\]+)$", latest_file_name_full).group(1)
     return latest_file_name
+
+def exclude_files(file_list):
+    updated_file_list = []
+    for file_name in file_list:
+        if re.search("\.db$", file_name):
+            pass
+        else:
+            updated_file_list.append(file_name)
+    return(updated_file_list)
+    
+    
 
 def get_middle_html(latest_file_name):
     middle_html_1 = "<center>"
