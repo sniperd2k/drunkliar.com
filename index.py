@@ -1,6 +1,7 @@
 import os
 import re
 import glob
+from datetime import datetime
 
 def main():
     top_html = get_top_html()
@@ -14,17 +15,26 @@ def main():
 
 def get_latest_file_name():
     file_list = glob.glob('G:/Dropbox/drunkliar/*') # * means all if need specific format then *.csv
-   
     file_list = exclude_files(file_list)
+    file_list = is_pic_in_list(file_list)    
+    latest_file_name_full = max(file_list, key=os.path.getctime)
     
+    #if just one thing in the list (like pic.jpg) need to append junk numbers so it won't cache
+    if len(file_list) == 1:
+        datestamp = str(datetime.today().strftime('%Y%m%d%H%M%S'))
+        latest_file_name_full = "".join([latest_file_name_full, "?a=", datestamp])    
+    
+    latest_file_name = re.search("\\\([^\\\]+)(\?a=\d+)?$", latest_file_name_full).group(1)
+    
+    
+    return latest_file_name
+
+def is_pic_in_list(file_list):
     #if pic.jpg is in here, use that
     for file_name in file_list:
         if re.search("\\\pic.jpg$", file_name, re.IGNORECASE):
-            list_of_files = [file_name]
-       
-    latest_file_name_full= max(file_list, key=os.path.getctime)
-    latest_file_name = re.search("\\\([^\\\]+)$", latest_file_name_full).group(1)
-    return latest_file_name
+            return [file_name]
+    return file_list    
 
 def exclude_files(file_list):
     updated_file_list = []
