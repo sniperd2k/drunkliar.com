@@ -41,8 +41,8 @@ def exclude_files(file_list):
     for file_name in file_list:
         if re.search("\.db$", file_name):
             pass
-        else:
-            updated_file_list.append(file_name)
+        elif os.path.isfile(file_name):
+            updated_file_list.append(file_name)            
     return(updated_file_list)
     
     
