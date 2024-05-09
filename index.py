@@ -17,7 +17,7 @@ def get_latest_file_name():
     file_list = glob.glob('G:/Dropbox/drunkliar/*') # * means all if need specific format then *.csv
     file_list = exclude_files(file_list)
     file_list = is_pic_in_list(file_list)    
-    latest_file_name_full = max(file_list, key=os.path.getctime)
+    latest_file_name_full = max(file_list, key=os.path.getmtime)
     
     #if just one thing in the list (like pic.jpg) need to append junk numbers so it won't cache
     if len(file_list) == 1:
