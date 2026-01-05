@@ -36,6 +36,8 @@ def is_pic_in_list(file_list):
             return [file_name]
         elif re.search("\\\heic.jpg$", file_name, re.IGNORECASE):
             return [file_name]
+        elif re.search("\\\png.jpg$", file_name, re.IGNORECASE):
+            return [file_name]            
     return file_list    
 
 def exclude_files(file_list):
